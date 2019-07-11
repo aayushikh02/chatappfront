@@ -1,0 +1,23 @@
+<p>
+  Create your account
+</p>
+<div class="inpuFields">
+  <mat-form-field appearance="outline" class="inputFieldsSize">
+    <mat-label>Enter your Name</mat-label>
+    <input matInput type="text" [(ngModel)]="user.name">
+  </mat-form-field>
+</div>
+<div class="inpuFields">
+  <mat-form-field appearance="outline" class="inputFieldsSize">
+    <mat-label >Password</mat-label>
+    <input matInput type="password" [(ngModel)]="user.password">
+  </mat-form-field>
+</div>
+<div class="inpuFields">
+  <mat-form-field appearance="outline" class="inputFieldsSize">
+    <mat-label >Contact No</mat-label>
+    <input matInput type="tel" [(ngModel)]="user.contact">
+  </mat-form-field>
+</div>
+ 
+<button mat-raised-button class="alignbutton" (click)=registerUser()>Create</button>
