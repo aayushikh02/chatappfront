@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { NoContactScreenComponent } from './no-contact-screen/no-contact-screen.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     LoginComponent,
     RegisterComponent,
     NoContactScreenComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule, MatSelectModule, MatIconModule ,FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent,DialogBoxComponent]
+  entryComponents:[DialogBoxComponent],
+  bootstrap: [AppComponent,]
 })
 export class AppModule { }

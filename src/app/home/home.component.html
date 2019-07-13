@@ -1,0 +1,21 @@
+<h1 style="text-align: center;">Welcome to Chat App</h1>
+<div class="sideNavBar">
+  <h2>Online Users</h2>
+  
+</div>
+<div class="box">
+  <!-- <h1>in show</h1>
+  {{this.usr}}:{{this.mesg}} -->
+  <div id = "message-container"></div>
+
+<!-- </div> -->
+
+
+<!-- <input name="message" class="textbox"/>-->
+
+<form >
+  <div class="form-group">
+    <input mdbInput type="text" class="form-control textbox" id="message" placeholder = "Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" >
+  </div>
+  <button type="button" class="btn btn-default sendButton" (click) = "sendMessage()">Send</button>
+</form>

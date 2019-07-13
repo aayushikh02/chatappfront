@@ -1,0 +1,33 @@
+.textbox{
+    position: absolute;
+    bottom: 2%;
+    width: 66% !important;
+    right: 13%;
+
+}
+
+.sendButton{
+    position: absolute;
+    bottom: 2%;
+    width:10% !important;
+    right:5%;
+}
+.box{
+    height: 500px;
+    bottom: 4%;
+    overflow-y: auto;
+    /* background-color: blue; */
+    left: 20%;
+    position: relative;
+    width: 80%;
+    
+}
+
+.sideNavBar{
+    position: absolute;
+    left:0%;
+    height:550px;
+    width: 20%;
+    /* background-color: pink; */
+    overflow-y: auto;
+}
