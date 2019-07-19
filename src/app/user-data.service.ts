@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class UserDataService {
   username;
   contactno;
+  userId;
   constructor() { }
 }

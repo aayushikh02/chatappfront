@@ -38,7 +38,7 @@ export class DialogBoxComponent implements OnInit {
       console.log("addedd..");
       // this.newContactSchema.contact=this.userService.contactno;
       this.http.post('http://192.168.43.94:3000/friendAdded',{
-        contact:"1234",
+        contact:this.userService.contactno,
         friendName:this.data.friendName,
         friendContact:this.data.friendContact
       }).subscribe((data)=>{
@@ -50,6 +50,9 @@ export class DialogBoxComponent implements OnInit {
     }
 
   ngOnInit() {
+    console.log("user name and number");
+    console.log(this.userService.contactno);
+    console.log(this.userService.username);
   }
 
 }

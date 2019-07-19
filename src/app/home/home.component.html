@@ -1,7 +1,14 @@
 <h1 style="text-align: center;">Welcome to Chat App</h1>
+<br>
+<button mat-raised-button (click)="openDialog()">ADD CONTACTs</button>
+<br>
 <div class="sideNavBar">
   <h2>Online Users</h2>
-  
+  <ul *ngFor="let f of this.friendList" >
+  <div>
+    <li  (click)="roomEvent(f.friendContact)">{{f.friendName}}</li>
+  </div>  
+  </ul>
 </div>
 <div class="box">
   <!-- <h1>in show</h1>
@@ -10,12 +17,12 @@
 
 <!-- </div> -->
 
-
-<!-- <input name="message" class="textbox"/>-->
-
+    <!-- <input name="message" class="textbox"/>-->
+<div id="messageTyping">
+</div>
 <form >
   <div class="form-group">
-    <input mdbInput type="text" class="form-control textbox" id="message" placeholder = "Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" >
+    <input mdbInput type="text" class="form-control textbox" id="message" placeholder = "Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" (keydown)="onKeydown($event)">
   </div>
   <button type="button" class="btn btn-default sendButton" (click) = "sendMessage()">Send</button>
 </form>

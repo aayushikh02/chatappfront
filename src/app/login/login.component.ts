@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { UserDataService } from '../user-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +13,15 @@ user={
   password:"",
   contact:"",
 };
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient,public userService:UserDataService, private router: Router) { }
 
   loginUser(){
-    this.http.post('http://192.168.43.94:3000:3000/userLogin',this.user).subscribe((data)=>{
+    this.http.post('http://192.168.43.94:3000/userLogin',this.user).subscribe((data)=>{
         console.log(data);
-        if (data==true)
-        {
-       console.log("true");
+        if(data){
+    
+          this.userService.contactno=this.user.contact;
+          this.router.navigate(['/home']) ;
         }
     })
   }
