@@ -5,8 +5,7 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { UserDataService } from '../user-data.service';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HostListener } from '@angular/core';
-import { Socket } from 'net';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -30,21 +29,33 @@ export class HomeComponent implements OnInit {
   userId:any;
   xx;
   typing = false;
-  constructor(public userService:UserDataService,public http:HttpClient,public dialog: MatDialog,){
+  countLength;
+  constructor(public userService:UserDataService,public http:HttpClient,public dialog: MatDialog,private cookieService: CookieService ){
     
   }
 
-  onKeydown(event) {
-    console.log(event);
-    this.socket.emit('typing',this.userService.contactno);
-    this.socket.on('typing',function(data){
-      document.getElementById('messageTyping').innerHTML+='<p><em>'+data+"is typing.."+'</em></p>'
-    })
+   getCount(event) {
+    this.countLength = document.getElementById("message").value.length;
+    console.log(this.countLength);
+    if(this.countLength>0){
+      console.log("greater");
+      this.socket.emit('typing',this.userService.contactno);
+      this.socket.on('showtyping',function(data){
+        console.log("i m in typing");
+        document.getElementById('messageTyping').innerHTML="";
+        document.getElementById('messageTyping').innerHTML+='<p><em>'+data+"is typing.."+'</em></p>'
+      })
+    }else{
+      console.log("less");
+      this.socket.emit('Stoptyping',this.userService.contactno);
+      this.socket.on('hidetyping',function(data){
+        console.log("i m hiding typing");
+        document.getElementById('messageTyping').innerHTML="";
+      })
+    }
+   
   }
 
-  handleKeyboardEvent(event: KeyboardEvent) {
-    console.log(event);
-  }
 
   roomEvent(roomcontact){
     console.log(this.xx);
@@ -101,11 +112,14 @@ openDialog(): void {
 
 
   public ngOnInit()  {
-    this.k.rr=this.userService.contactno;
+    console.log("cookies---");
+    console.log(this.cookieService.get('UserContactNo'));
+    this.k.rr=this.cookieService.get('UserContactNo');
+    this.userService.contactno=this.cookieService.get('UserContactNo');
     console.log(this.k.rr);
     console.log("user name and number");
-    console.log(this.userService.contactno);
-    console.log(this.userService.username);
+    // console.log(this.userService.contactno);
+    // console.log(this.userService.username);
     // this.k={rr:this.userService.contactno};.then
   this.http.post('http://192.168.43.94:3000/getfriends',this.k).subscribe((dataD)=>{
       console.log("adaaatda");
@@ -120,9 +134,11 @@ openDialog(): void {
 
     this.socket=io.connect("http://192.168.43.94:3000");
     this.socket.on("connect", function() {
+      console.log("user connected is --- ")
+    
+ 
       // Do stuff when we connect to the server
   }); 
-  // console.log(this.userService.branch);
  
   }
 }

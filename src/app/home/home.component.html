@@ -22,7 +22,7 @@
 </div>
 <form >
   <div class="form-group">
-    <input mdbInput type="text" class="form-control textbox" id="message" placeholder = "Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" (keydown)="onKeydown($event)">
+    <input mdbInput type="text" class="form-control textbox" id="message" value="" (input)="getCount(event)" placeholder = "Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" >
   </div>
   <button type="button" class="btn btn-default sendButton" (click) = "sendMessage()">Send</button>
 </form>

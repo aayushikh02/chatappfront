@@ -17,6 +17,9 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
 
+
+import { CookieService } from 'ngx-cookie-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,7 @@ import { HomeComponent } from './home/home.component';
     MatDialogModule,
     MatButtonModule, MatSelectModule, MatIconModule ,FormsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   entryComponents:[DialogBoxComponent],
   bootstrap: [AppComponent,]
 })
