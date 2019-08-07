@@ -2,19 +2,24 @@
   Login in your account
 </p>
 
+<div id="alertMessage" *ngIf ="this.userInfoWrong ==true || this.userNotExist ==true ">
+  {{this.showErrorMessage}}
+</div>
+<br>  
+<div class="inpuFields" >
+  <mat-form-field appearance="outline" class="inputFieldsSize">
+    <mat-label >Contact No</mat-label>
+    <input matInput type="tel" [(ngModel)]="user.contact">
+  </mat-form-field>
+</div>
 <div class="inpuFields">
   <mat-form-field appearance="outline" class="inputFieldsSize">
     <mat-label >Password</mat-label>
     <input matInput type="password" [(ngModel)]="user.password">
   </mat-form-field>
 </div>
-<div class="inpuFields">
-  <mat-form-field appearance="outline" class="inputFieldsSize">
-    <mat-label >Contact No</mat-label>
-    <input matInput type="tel" [(ngModel)]="user.contact">
-  </mat-form-field>
-</div>
+
 <button mat-raised-button class="alignbutton" (click)=loginUser()>Login</button>
 
-<p  >Does's not have an account?</p>
+<p>Does's not have an account?</p>
 <button mat-raised-button class="alignbutton" routerLink="/register" routerLinkActive="active" >Register</button>

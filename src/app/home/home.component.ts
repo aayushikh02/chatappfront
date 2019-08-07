@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
    getCount(event) {
+     console.log(event);
     this.countLength = document.getElementById("message").value.length;
     console.log(this.countLength);
     if(this.countLength>0){
@@ -58,6 +59,7 @@ export class HomeComponent implements OnInit {
 
 
   roomEvent(roomcontact){
+    document.getElementById('message-container').innerHTML="";
     console.log(this.xx);
     console.log(roomcontact);
     this.roomContact=roomcontact;
@@ -66,10 +68,10 @@ export class HomeComponent implements OnInit {
     console.log(this.idMix);
     this.socket.emit('addToRoom',this.idMix);
     // this.socket.emit('addToRoom',this.roomContact);
-    console.log(this.userService.username);
+
     // this.socket.emit("now","hi hello how are you");
     // this.socket.on("some event", function(data) {
-    // Log the data I received
+    //s Log the data I received
     // console.log(data);
     // Send a message to the server
     //  this.socket.emit("other event", {some: "data"});
@@ -80,19 +82,21 @@ export class HomeComponent implements OnInit {
 
  sendMessage() {
   this.socket.removeAllListeners();
-  console.log(this.userService.contactno);
+  console.log(this.userService.contactno);  
   var msg =this.message;
+  document.getElementById('messageTyping').innerHTML="";
   this.message=""
   if(msg) {
-     this.socket.emit('msg', {message: msg, user:this.userService.contactno});
+     this.socket.emit('msg', {message: msg, user:this.userService.contactno,username:this.userService.username});
     console.log("yaha tou hu mai");
   }
 
   this.socket.on('newmsg', function(data) {
     console.log("hah bhi");
+    // console.log(this.userService.username);
     if(data.user) {
-       document.getElementById('message-container').innerHTML += '<div><b>' + 
-          data.user + '</b>: ' + data.message + '</div>'
+       document.getElementById('message-container').innerHTML += '<div style="text-align:right"><b>' + 
+       data.username + '</b>: ' + data.message + '</div>'
     } 
  })
 }
@@ -112,10 +116,23 @@ openDialog(): void {
 
 
   public ngOnInit()  {
+
+    
+    this.socket=io.connect("http://192.168.43.94:3000");
+    this.socket.on("connect", function() {
+      console.log("user connected is --- ")
+      console.log("see who is called");
+ 
+      // Do stuff when we connect to the server
+  }); 
+
+
     console.log("cookies---");
     console.log(this.cookieService.get('UserContactNo'));
     this.k.rr=this.cookieService.get('UserContactNo');
     this.userService.contactno=this.cookieService.get('UserContactNo');
+    this.userService.username=this.cookieService.get('UserName');
+    console.log(this.userService.username);
     console.log(this.k.rr);
     console.log("user name and number");
     // console.log(this.userService.contactno);
@@ -127,18 +144,15 @@ openDialog(): void {
       this.friendList=dataD['friends'];
       console.log(this.friendList);
       console.log(this.userService.userId);
+
+      document.getElementById('message-container').innerHTML=
+      '<div style="color:blue;text-align:center;font-size:30px;"><b>' + 
+       "Select any of your friend and sart chatting" +'</b></div>';
       // var list = data;
       // this.friendList=list.friends;
       // console.log(this.friendList[0].friendName)
   });
 
-    this.socket=io.connect("http://192.168.43.94:3000");
-    this.socket.on("connect", function() {
-      console.log("user connected is --- ")
-    
- 
-      // Do stuff when we connect to the server
-  }); 
  
   }
 }

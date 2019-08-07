@@ -16,8 +16,8 @@ import { NoContactScreenComponent } from './no-contact-screen/no-contact-screen.
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
-
-
+import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
 import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { CookieService } from 'ngx-cookie-service';
     MatInputModule,
     HttpClientModule,
     MatDialogModule,
-    MatButtonModule, MatSelectModule, MatIconModule ,FormsModule,
+    MatButtonModule, MatSelectModule, MatIconModule ,FormsModule,MatTableModule,MatDividerModule
   ],
   providers: [CookieService],
   entryComponents:[DialogBoxComponent],
