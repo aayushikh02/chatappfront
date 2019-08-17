@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   friendName: string;
   user;
   socket: any;
+  sockets: any;
   message="";
   mesg:any;
   usr:any;
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   xx;
   typing = false;
   countLength;
+  socketId;
   constructor(public userService:UserDataService,public http:HttpClient,public dialog: MatDialog,private cookieService: CookieService ){
     
   }
@@ -40,6 +42,7 @@ export class HomeComponent implements OnInit {
     console.log(this.countLength);
     if(this.countLength>0){
       console.log("greater");
+      // this.sockets.in(this.roomContact).emit('typing',this.userService.contactno);
       this.socket.emit('typing',this.userService.contactno);
       this.socket.on('showtyping',function(data){
         console.log("i m in typing");
@@ -66,7 +69,8 @@ export class HomeComponent implements OnInit {
     this.idMix=roomcontact+this.userService.contactno;
     console.log("id Mix....");
     console.log(this.idMix);
-    this.socket.emit('addToRoom',this.idMix);
+    // this.socket.emit('addToRoom',{idMix:this.idMix,contact:roomcontact});
+    this.socket.emit('addToRoom',{friendRoom:roomcontact,yourRoom:this.userService.contactno});
     // this.socket.emit('addToRoom',this.roomContact);
 
     // this.socket.emit("now","hi hello how are you");
@@ -77,8 +81,6 @@ export class HomeComponent implements OnInit {
     //  this.socket.emit("other event", {some: "data"});
   // });
   }
-
-
 
  sendMessage() {
   this.socket.removeAllListeners();
@@ -97,7 +99,7 @@ export class HomeComponent implements OnInit {
     if(data.user) {
        document.getElementById('message-container').innerHTML += '<div style="text-align:right"><b>' + 
        data.username + '</b>: ' + data.message + '</div>'
-    } 
+    }
  })
 }
 
@@ -113,16 +115,15 @@ openDialog(): void {
   });
 }
 
-
-
   public ngOnInit()  {
-
-    
     this.socket=io.connect("http://192.168.43.94:3000");
     this.socket.on("connect", function() {
       console.log("user connected is --- ")
       console.log("see who is called");
- 
+      // this.socket.on("socketID",function(data){
+      //   console.log(data);
+      //   this.socketId=data;
+      // });
       // Do stuff when we connect to the server
   }); 
 
