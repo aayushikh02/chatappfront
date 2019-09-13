@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserDataService } from '../user-data.service';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 export interface DialogData {
@@ -16,43 +16,34 @@ export interface DialogData {
 })
 export class DialogBoxComponent implements OnInit {
 
-  newContactSchema:{
-  contact:"1234",
-  friendName:
-  '',
-  friendContact:""
+  newContactSchema: {
+    contact: "1234",
+    friendName:
+    '',
+    friendContact: ""
   };
 
-  
-  constructor( public dialogRef: MatDialogRef<DialogBoxComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,public userService:UserDataService,private router: Router,public http:HttpClient) { }
+
+  constructor(public dialogRef: MatDialogRef<DialogBoxComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, public userService: UserDataService, private router: Router, public http: HttpClient) { }
 
 
-    onNoClick(): void {
-      this.dialogRef.close();
-    }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
-    onAddClick(){
-      console.log(this.data.friendName);
-      console.log(this.data.friendContact);
-      console.log("addedd..");
-      // this.newContactSchema.contact=this.userService.contactno;
-      this.http.post('http://192.168.43.94:3000/friendAdded',{
-        contact:this.userService.contactno,
-        friendName:this.data.friendName,
-        friendContact:this.data.friendContact
-      }).subscribe((data)=>{
-        console.log("adaaatda");
-        console.log(data);
-        this.router.navigate(['/home']) ;
+  onAddClick() {
+    this.http.post('http://192.168.43.94:3000/friendAdded', {
+      contact: this.userService.contactno,
+      friendName: this.data.friendName,
+      friendContact: this.data.friendContact
+    }).subscribe((data) => {
+      this.router.navigate(['/home']);
     })
-      this.dialogRef.close();
-    }
+    this.dialogRef.close();
+  }
 
   ngOnInit() {
-    console.log("user name and number");
-    console.log(this.userService.contactno);
-    console.log(this.userService.username);
   }
 
 }

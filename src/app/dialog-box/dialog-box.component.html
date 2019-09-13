@@ -1,17 +1,17 @@
 <h1 mat-dialog-title>Hi</h1>
 <div mat-dialog-content>
-<div class="inpuFields">
-  <mat-form-field appearance="outline" class="inputFieldsSize">
-    <mat-label >Name</mat-label>
-    <input matInput type="text" [(ngModel)]="this.data.friendName">
-  </mat-form-field>
-</div>
-<div class="inpuFields">
-  <mat-form-field appearance="outline" class="inputFieldsSize">
-    <mat-label >Contact No</mat-label>
-    <input matInput type="tel" [(ngModel)]="this.data.friendContact">
-  </mat-form-field>
-</div>
+  <div class="inpuFields">
+    <mat-form-field appearance="outline" class="inputFieldsSize">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" [(ngModel)]="this.data.friendName">
+    </mat-form-field>
+  </div>
+  <div class="inpuFields">
+    <mat-form-field appearance="outline" class="inputFieldsSize">
+      <mat-label>Contact No</mat-label>
+      <input matInput type="tel" [(ngModel)]="this.data.friendContact">
+    </mat-form-field>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

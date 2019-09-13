@@ -1,46 +1,49 @@
 <div class="row">
   <div class="col-md-3" style="padding: 0px;">
-     
-      <div class="tableStyle" >
-          <ng-container >
-            <h2 class="styleTablehead"> FRIENDS </h2>
-            
-            <mat-divider></mat-divider>
-            <div id="nameofFriend" class="tableRow" *ngFor="let f of this.friendList" (click)="roomEvent(f.friendContact)">
-              {{f.friendName}}
-              <mat-divider></mat-divider>  
-            </div>
-            
-          <!-- <mat-divider></mat-divider> -->
-          
-          </ng-container>
-      </div>
+
+    <div class="tableStyle">
+      <ng-container>
+        <h2 class="styleTablehead"> FRIENDS </h2>
+
+        <mat-divider></mat-divider>
+        <div id="nameofFriend" class="tableRow" *ngFor="let f of this.friendList"
+          (click)="roomEvent(this.f.friendContact)">
+          {{this.f.friendName}}
+          <mat-divider></mat-divider>
+        </div>
+
+        <!-- <mat-divider></mat-divider> -->
+
+      </ng-container>
+    </div>
   </div>
   <div class="col-md-9" style="padding: 0px;">
     <div class="messageArea">
       <div class="row head">
         <div class="col-md-9">
-            <h1 style="text-align: center;">   Welcome to Chat App</h1>
+          <h1 style="text-align: center;"> Welcome to Chat App</h1>
         </div>
         <div class="col-md-3">
-            <button mat-raised-button (click)="openDialog()">ADD CONTACTs</button>
+          <button mat-raised-button (click)="openDialog()">ADD CONTACTs</button>
         </div>
+
       </div>
       <br>
-            <div class="box" id = "message-container"></div>
-          <div id="messageTyping">
-          </div>
-          <form >
-            <div class="form-group">
-              <input mdbInput type="text" class="form-control textbox" id="message" value="" (input)="getCount(event)" placeholder = "Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" >
-            </div>
-            <button type="button" class="btn btn-default sendButton" (click) = "sendMessage()">Send</button>
-          </form>
-          </div>
-        
+      <div class="box" id="message-container"></div>
+      <div id="messageTyping">
+      </div>
+      <form>
+        <div class="form-group">
+          <input mdbInput type="text" class="form-control textbox" id="message" value="" (input)="getCount(event)"
+            placeholder="Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}">
+        </div>
+        <button type="button" class="btn btn-default sendButton" (click)="sendMessage()">Send</button>
+      </form>
     </div>
-      
+
   </div>
+
+</div>
 
 
 

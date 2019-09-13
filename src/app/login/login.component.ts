@@ -19,14 +19,9 @@ export class LoginComponent implements OnInit {
 };
   constructor(public http:HttpClient,public userService:UserDataService, private router: Router,private cookieService: CookieService ) { }
 
-  
-
-
   loginUser(){
     this.http.post('http://192.168.43.94:3000/userLogin',this.user).subscribe((response)=>{
-  
         if(response['code']==200){
-          
           this.cookieService.set('UserName',response['data']['name']);
           this.cookieService.set( 'UserContactNo', this.user.contact );
           this.userService.username=this.cookieService.get('UserName');

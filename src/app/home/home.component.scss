@@ -23,9 +23,7 @@
     height: 460px;
     bottom: 4%;
     overflow-y: auto;
-    /* background-color: blue; */
     left: 20%;
-    // position: relative;
     width: 80%;
     
 }
@@ -35,13 +33,11 @@
     left:0%;
     height:550px;
     width: 20%;
-    /* background-color: pink; */
     overflow-y: auto;
 }
 
 .tableRow{
   
-    // background-color: pink;
     height: 40px;
     cursor: pointer;
     padding-top: 20px;
@@ -57,7 +53,7 @@
     overflow-y: auto;
     height:620px;
     position: absolute;
-    background-color:rgb(136, 132, 132);
+    background-color:skyblue;
 }
 
 .messageArea{
