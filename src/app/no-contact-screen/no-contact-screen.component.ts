@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { UserDataService } from '../user-data.service';
 
@@ -14,7 +14,7 @@ export class NoContactScreenComponent implements OnInit {
   
   constructor(public dialog: MatDialog,public userService:UserDataService) { }
 
-  openDialog(): void {
+  openDialog(): void {  //dialog box
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '350px',
       data: {name: this.friendName, contact: this.friendContact}

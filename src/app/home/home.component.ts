@@ -18,48 +18,41 @@ export class HomeComponent implements OnInit {
   friendName: string;
   user;
   socket: any;
-  sockets: any;
   message = "";
-  mesg: any;
-  usr: any;
   show = false;
   friendList;
   k = { rr: '' };
   roomContact;
-  idMix;
-  userId: any;
-  xx;
   typing = false;
   countLength;
-  socketId;
+
   constructor(public userService: UserDataService, public http: HttpClient, public dialog: MatDialog, private cookieService: CookieService) {
-
   }
 
-  getCount(event) {
-    this.countLength = document.getElementById("message").value.length;
-    if (this.countLength > 0) {
-      this.socket.emit('typing', this.userService.contactno);
-      this.socket.on('showtyping', function (data) {
-        document.getElementById('messageTyping').innerHTML = "";
-        document.getElementById('messageTyping').innerHTML += '<p><em>' + data + "is typing.." + '</em></p>'
-      })
-    } else {
-      this.socket.emit('Stoptyping', this.userService.contactno);
-      this.socket.on('hidetyping', function (data) {
-        document.getElementById('messageTyping').innerHTML = "";
-      })
-    }
-  }
+  // getCount(event) {
+  //   this.countLength = document.getElementById("message").value.length; //length of message in inbox
+  //   if (this.countLength > 0) {
+  //     this.socket.emit('typing', this.userService.contactno);
+  //     this.socket.on('showtyping', function (data) {
+  //       document.getElementById('messageTyping').innerHTML = "";
+  //       document.getElementById('messageTyping').innerHTML += '<p><em>' + data + "is typing.." + '</em></p>'
+  //     })
+  //   } else {
+  //     this.socket.emit('Stoptyping', this.userService.contactno);
+  //     this.socket.on('hidetyping', function (data) {
+  //       document.getElementById('messageTyping').innerHTML = "";
+  //     })
+  //   }
+  // }
 
-
-  roomEvent(roomcontact) {
+//create a room
+  roomEvent(roomcontact) {  
     document.getElementById('message-container').innerHTML = "";
     this.roomContact = roomcontact;
-    this.idMix = roomcontact + this.userService.contactno;
     this.socket.emit('addToRoom', { friendRoom: roomcontact, yourRoom: this.userService.contactno });
   }
 
+  //send message
   sendMessage() {
     this.socket.removeAllListeners();
     var msg = this.message;
@@ -77,6 +70,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  //dialog box open
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '350px',
@@ -88,6 +82,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  //get list of friends
   getFriendList() {
     this.k.rr = this.cookieService.get('UserContactNo');
     this.userService.contactno = this.cookieService.get('UserContactNo');
@@ -102,7 +97,7 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.socket = io.connect("http://192.168.43.94:3000");
+    this.socket = io.connect("http://192.168.43.94:3000");  //connection
     this.socket.on("connect", function () {
     });
     this.getFriendList();

@@ -23,10 +23,9 @@
         <div class="col-md-9">
           <h1 style="text-align: center;"> Welcome to Chat App</h1>
         </div>
-        <div class="col-md-3">
-          <button mat-raised-button (click)="openDialog()">ADD CONTACTs</button>
+        <div class="col-md-3" style="padding-top: 10px;">
+          <button mat-raised-button (click)="openDialog()" style="height: 40px;">ADD CONTACTs</button>
         </div>
-
       </div>
       <br>
       <div class="box" id="message-container"></div>
@@ -34,43 +33,15 @@
       </div>
       <form>
         <div class="form-group">
-          <input mdbInput type="text" class="form-control textbox" id="message" value="" (input)="getCount(event)"
+          <input mdbInput type="text" class="form-control textbox" id="message" value=""
+          
             placeholder="Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}">
         </div>
         <button type="button" class="btn btn-default sendButton" (click)="sendMessage()">Send</button>
       </form>
     </div>
-
   </div>
-
 </div>
 
 
-
-
-<!-- <h1 style="text-align: center;">Welcome to Chat App</h1>
-<button mat-raised-button (click)="openDialog()">ADD CONTACTs</button>
-<br>
-
-<br> -->
-<!-- <div class="sideNavBar">
-  <h2>Online Users</h2>
-  <ul *ngFor="let f of this.friendList" >
-  <div>
-    <li  (click)="roomEvent(f.friendContact)">{{f.friendName}}</li>
-  </div>  
-  </ul>
-</div> -->
-
-
-<!-- <div class="box"> 
-  <div id = "message-container"></div>
-<div id="messageTyping">
-</div>
-<form >
-  <div class="form-group">
-    <input mdbInput type="text" class="form-control textbox" id="message" value="" (input)="getCount(event)" placeholder = "Message!" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" >
-  </div>
-  <button type="button" class="btn btn-default sendButton" (click) = "sendMessage()">Send</button>
-</form>
-</div> -->
+<!--  (input)="getCount(event)" -->
